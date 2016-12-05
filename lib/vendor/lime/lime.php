@@ -922,6 +922,8 @@ class lime_harness extends lime_registration
 
       $relative_file = $this->get_relative_file($file);
 
+      var_dump($this->options['test_path'], sys_get_temp_dir());
+
       // avoid notice in PHP7 when tempnam() fallback to sys_get_temp_dir()
       if (sys_get_temp_dir() === $this->options['test_path'])
       {
