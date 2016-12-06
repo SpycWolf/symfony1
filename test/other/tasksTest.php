@@ -107,8 +107,10 @@ $t->is($content, $c->get_fixture_content('/test/unit/result.txt'), '"test:unit" 
 
 $content = $c->execute_command('test:unit');
 
-$t->isnt(false, strpos($content, $c->get_fixture_content('test/unit/result-harness.txt')), '"test:unit" can launch all unit tests');
+// this test is failing on 7.1 because tempnam() raise a notice because it uses sys_get_temp_dir()
+// so strict comparison doesn't work because the result contains the notice
 // $t->like($content, $c->get_fixture_content('test/unit/result-harness.txt'), '"test:unit" can launch all unit tests');
+$t->isnt(false, strpos($content, $c->get_fixture_content('test/unit/result-harness.txt')), '"test:unit" can launch all unit tests');
 
 $content = $c->execute_command('cache:clear');
 
