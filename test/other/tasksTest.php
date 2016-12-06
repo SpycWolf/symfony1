@@ -107,9 +107,8 @@ $t->is($content, $c->get_fixture_content('/test/unit/result.txt'), '"test:unit" 
 
 $content = $c->execute_command('test:unit');
 
-var_dump(strpos($content, $c->get_fixture_content('test/unit/result-harness.txt')));
-
-$t->like($content, $c->get_fixture_content('test/unit/result-harness.txt'), '"test:unit" can launch all unit tests');
+$t->isnt(false, strpos($content, $c->get_fixture_content('test/unit/result-harness.txt')), '"test:unit" can launch all unit tests');
+// $t->like($content, $c->get_fixture_content('test/unit/result-harness.txt'), '"test:unit" can launch all unit tests');
 
 $content = $c->execute_command('cache:clear');
 
